@@ -1,0 +1,27 @@
+#include <stdio.h>
+typedef struct {
+    char nome[30];
+    int numero_matricula;
+    char curso[30];
+} cadastro_aluno;
+
+int main() {
+    int i;
+    cadastro_aluno alunos[5];
+    for(i = 0; i < 5; i++) {
+        printf("Me informe o nome da pessoa: ");
+        scanf(" %50[^\n]", (alunos + i)->nome);
+        printf("Me informe a idade da pessoa: ");
+        scanf(" %d", &(alunos + i)->numero_matricula);
+        printf("Me informe o endereco da pessoa: ");
+        scanf(" %100[^\n]", (alunos + i)->curso); 
+    }
+    
+    for(i = 0; i < 5; i++) {
+        printf("%s\n", (alunos + i)->nome);;
+        printf("%d\n", (alunos + i)->numero_matricula);
+        printf("%s\n", (alunos + i)->curso);
+    }
+    
+    return 0;
+}
