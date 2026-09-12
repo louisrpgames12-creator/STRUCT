@@ -21,9 +21,7 @@ int main() {
         vetorsoma.z += (vetor + i) -> z;
     }
     
-        printf("%.2f\n", vetorsoma.x);
-        printf("%.2f\n", vetorsoma.y);
-        printf("%.2f\n", vetorsoma.z);
+        printf("R3 (%.1f,%.1f,%1.f)", vetorsoma.x, vetorsoma.y, vetorsoma.z);
     
     return 0;
 }
