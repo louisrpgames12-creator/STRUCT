@@ -1,0 +1,22 @@
+#include <stdio.h>
+typedef struct {
+    char nome[50];
+    int idade;
+    char endereco[100];
+} cadastro_pessoa;
+
+int main() {
+    cadastro_pessoa pessoa1;
+    printf("Me informe o nome da pessoa: ");
+    scanf("%50[^\n]", pessoa1.nome);
+    printf("Me informe a idade da pessoa: ");
+    scanf("%d", &pessoa1.idade);
+    printf("Me informe o endereco da pessoa: ");
+    scanf(" %100[^\n]", pessoa1.endereco);
+
+    printf("%s\n", pessoa1.nome);;
+    printf("%d\n", pessoa1.idade);
+    printf("%s", pessoa1.endereco);
+    
+    return 0;
+}
