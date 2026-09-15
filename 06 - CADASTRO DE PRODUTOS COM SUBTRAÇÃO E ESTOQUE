@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int codigo, quantidade;
+    char nome[15];
+    float preco;
+} cadastroprodutos;
+
+
+void cadastro(cadastroprodutos *produtos) {
+
+    for(int i = 0; i < 5; i++) {
+
+        printf("ME INFORME O NOME: ");
+        scanf(" %15[^\n]", (produtos + i)->nome);
+
+        printf("ME INFORME O CODIGO: ");
+        scanf(" %d", &(produtos + i)->codigo);
+
+        printf("ME INFORME A QUANTIDADE: ");
+        scanf(" %d", &(produtos + i)->quantidade);
+
+        printf("ME INFORME O PRECO: ");
+        scanf(" %f", &(produtos + i)->preco);
+    }
+}
+void mostrar(cadastroprodutos *produtos) {
+    for(int i = 0; i < 5; i++) {
+
+        printf("NOME: %s\n", (produtos + i)->nome);
+        printf("CODIGO: %d\n", (produtos + i)->codigo);
+        printf("QUANTIDADE: %d\n", (produtos + i)->quantidade);
+        printf("PRECO: %.2f\n", (produtos + i)->preco);
+    }
+}
+
+int main() {
+    int codigo, quantidade;
+    cadastroprodutos produtos[5];
+
+    cadastro(produtos);
+    while(codigo != 0) {
+    printf("ME INFORME O CODIGO E A QUANTIDADE: ");
+    scanf(" %d%d", &codigo, &quantidade);
+    if(codigo == 0)
+        break;
+    for(int i = 0; i < 5; i++) {
+        if((produtos + i) -> codigo == codigo && (produtos + i) -> quantidade >= quantidade) {
+            (produtos + i) -> quantidade = (produtos + i) -> quantidade - quantidade;
+            mostrar(produtos);
+            }
+        }
+    }
+
+    return 0;
+}
