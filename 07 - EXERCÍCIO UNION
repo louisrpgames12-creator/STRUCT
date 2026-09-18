@@ -1,0 +1,19 @@
+#include <stdio.h>
+typedef union{
+    int valor_int;
+    float valor_float;
+    char texto[20];
+} dado;
+
+int main() {
+    dado tipo;
+    tipo.valor_int = 10;
+    printf("%d\n", tipo.valor_int);
+    tipo.valor_float = 10.1;
+    printf("%.2f\n", tipo.valor_float);
+    scanf(" %20[^\n]", tipo.texto);
+    printf("%s\n", tipo.texto);
+    printf("%d", sizeof(tipo));
+
+    return 0;
+}
