@@ -1,0 +1,121 @@
+#include <stdio.h>
+
+typedef enum {
+    NACIONAL,
+    IMPORTADO
+} Origin;
+
+typedef union {
+    
+    struct {
+        int sku;
+        int preco_centavos;
+    } nacional;
+
+    struct {
+        char codigo_barras[16];
+        float preco_dolar;
+    } importado;
+
+} ProductData;
+
+typedef struct {
+    char nome[30];
+    Origin origem;
+    ProductData dados;
+} Product;
+
+
+int main() {
+
+    Product produto1;
+    Product produto2;
+
+
+    // Cadastro do produto nacional
+    printf("=== PRODUTO NACIONAL ===\n");
+
+    printf("Nome: ");
+    scanf(" %29[^\n]", produto1.nome);
+
+    produto1.origem = NACIONAL;
+
+    printf("Codigo SKU: ");
+    scanf("%d", &produto1.dados.nacional.sku);
+
+    printf("Preco em centavos: ");
+    scanf("%d", &produto1.dados.nacional.preco_centavos);
+
+
+    // Cadastro do produto importado
+    printf("\n=== PRODUTO IMPORTADO ===\n");
+
+    printf("Nome: ");
+    scanf(" %29[^\n]", produto2.nome);
+
+    produto2.origem = IMPORTADO;
+
+    printf("Codigo de barras: ");
+    scanf(" %15[^\n]", produto2.dados.importado.codigo_barras);
+
+    printf("Preco em dolar: ");
+    scanf("%f", &produto2.dados.importado.preco_dolar);
+
+
+    // Exibindo produto nacional
+    printf("\n\n===== PRODUTOS CADASTRADOS =====\n");
+
+    printf("\nNome: %s\n", produto1.nome);
+
+    switch (produto1.origem) {
+
+        case NACIONAL:
+            printf("Origem: Nacional\n");
+            printf("SKU: %d\n", produto1.dados.nacional.sku);
+
+            printf("Preco: R$ %d,%02d\n",
+                   produto1.dados.nacional.preco_centavos / 100,
+                   produto1.dados.nacional.preco_centavos % 100);
+
+            break;
+
+        case IMPORTADO:
+            printf("Origem: Importado\n");
+            printf("Codigo de barras: %s\n",
+                   produto1.dados.importado.codigo_barras);
+
+            printf("Preco: $ %.2f\n",
+                   produto1.dados.importado.preco_dolar);
+
+            break;
+    }
+
+
+    // Exibindo produto importado
+    printf("\nNome: %s\n", produto2.nome);
+
+    switch (produto2.origem) {
+
+        case NACIONAL:
+            printf("Origem: Nacional\n");
+            printf("SKU: %d\n", produto2.dados.nacional.sku);
+
+            printf("Preco: R$ %d,%02d\n",
+                   produto2.dados.nacional.preco_centavos / 100,
+                   produto2.dados.nacional.preco_centavos % 100);
+
+            break;
+
+        case IMPORTADO:
+            printf("Origem: Importado\n");
+            printf("Codigo de barras: %s\n",
+                   produto2.dados.importado.codigo_barras);
+
+            printf("Preco: $ %.2f\n",
+                   produto2.dados.importado.preco_dolar);
+
+            break;
+    }
+
+    return 0;
+}
