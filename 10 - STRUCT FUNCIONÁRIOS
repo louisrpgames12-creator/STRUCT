@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+typedef struct {
+    int dia, mes, ano;
+} data_nascimento;
+
+typedef struct {
+    char nome[50];
+    data_nascimento data;
+    char endereco[100];
+    char cpf[12];
+} padrao_funcionarios;
+
+void imprimir(padrao_funcionarios *funcionarios) {
+    for(int i = 0; i < 5; i++) {
+        printf("NOME(%d): %s\n", i + 1, funcionarios[i].nome);
+        printf("DATA DE NASCIMENTO(%d): %d/%d/%d\n", i + 1, funcionarios[i].data.dia, funcionarios[i].data.mes, funcionarios[i].data.ano);
+        printf("ENDERECO(%d): %s\n", i + 1, funcionarios[i].endereco);
+        printf("ME INFORME SEU CPF(%d): %s\n", i + 1, funcionarios[i].cpf);
+    }
+}
+
+int main() {
+    padrao_funcionarios funcionarios[5];
+
+    for(int i = 0; i < 5; i++) {
+        printf("ME INFORME SEU NOME(%d): ", i + 1);
+        scanf(" %49[^\n]", funcionarios[i].nome);
+        printf("ME INFORME SUA DATA DE NASCIMENTO(%d): ", i + 1);
+        scanf("%d%d%d", &funcionarios[i].data.dia, &funcionarios[i].data.mes, &funcionarios[i].data.ano);
+        printf("ME INFORME SEU ENDERECO(%d): ", i + 1);
+        scanf(" %99[^\n]", funcionarios[i].endereco);
+        printf("ME INFORME SEU CPF(%d): ", i + 1);
+        scanf(" %11[^\n]", funcionarios[i].cpf);
+    }
+
+    imprimir(funcionarios);
+    return 0;
+}
