@@ -1,0 +1,53 @@
+//  Crie uma função para ordenar o vetor de imóveis de forma crescente do valor do imóvel. 
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    char codigo[10];
+    float valor;
+    int area;
+}Imoveis;
+
+Imoveis *funcao(int valor) {
+    Imoveis *vetor;
+    int i, j;
+    float aux;
+    vetor = calloc(valor, sizeof(Imoveis));
+
+    for(int i = 0; i < valor; i++){
+        printf("ME INFORME O CODIGO: ");
+        scanf(" %10[^\n]", vetor[i].codigo);
+        printf("ME INFORME O VALOR: ");
+        scanf("%f", &vetor[i].valor);
+        printf("ME INFORME A AREA: ");
+        scanf("%d", &vetor[i].area);
+    }
+
+    for(i = 0; i < valor; i++) {
+        for(j = i + 1; j < valor; j++) {
+            if(vetor[i].valor > vetor[j].valor) {
+                aux = vetor[i].valor;
+                vetor[i].valor = vetor[j].valor;
+                vetor[j].valor = aux;
+            }
+        }
+    }
+    return vetor;
+}
+
+int main() {
+    int valor;
+    Imoveis *vetor;
+    
+    printf("ME INFORME A QUANTIDADE DE IMOVEIS: ");
+    scanf("%d", &valor);
+
+    vetor = funcao(valor);
+    
+    for(int i = 0; i < valor; i++) {
+        printf("%.2f ", vetor[i].valor);
+    }
+    return 0;
+}
