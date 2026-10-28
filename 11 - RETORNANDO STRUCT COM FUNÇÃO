@@ -1,0 +1,35 @@
+// 2) Seja a struct Imóveis com: Código, valor, área total. Crie uma função que receba como argumento um valor n, que será a quantidade de imóveis, declare uma vetor com n imóveis, leia os valores para o vetor e retorne o vetor lido.
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    char codigo[10];
+    float valor;
+    int area;
+}Imoveis;
+
+Imoveis *funcao(int valor) {
+    Imoveis *vetor;
+    vetor = calloc(valor, sizeof(Imoveis));
+
+    for(int i = 0; i < valor; i++){
+        printf("ME INFORME O CODIGO: ");
+        scanf(" %10[^\n]", vetor[i].codigo);
+        printf("ME INFORME O VALOR: ");
+        scanf("%f", &vetor[i].valor);
+        printf("ME INFORME A AREA: ");
+        scanf("%d", &vetor[i].area);
+    }
+    return vetor;
+}
+
+int main() {
+    int valor;
+    Imoveis *vetor;
+    
+    printf("ME INFORME A QUANTIDADE DE IMOVEIS: ");
+    scanf("%d", &valor);
+
+    vetor = funcao(valor);
+    return 0;
+}
