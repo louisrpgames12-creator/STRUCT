@@ -1,0 +1,54 @@
+//4) Considere o tipo struct vendedor, definido abaixo, e:  
+//(a) escreva o código de uma função em C que receba como parâmetro uma quantidade que será a quantidade de vendedores que se quer armazenar, declare um vetor contendo a quantidade recebida de elementos, leia os elementos do vetor e retorne um ponteiro para o vetor lido.
+//(b) Escreva outra função que receba o vetor criado no item (a), percorra o vetor e retorne outro vetor contendo somente os vendedores com idade acima de 40 anos.
+//
+//
+//struct vendedor{
+  //char nome[20];
+  //int idade;
+  //float salario;
+//};
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    char nome[20];
+  int idade;
+  float salario;
+}vendedor;
+
+vendedor *funcao(int quantidade) {
+    vendedor *vetor;
+    int i;
+    vetor = calloc(quantidade, sizeof(vendedor));
+
+    for(i = 0; i < quantidade; i++){
+        printf("ME INFORME O NOME: ");
+        scanf(" %19[^\n]", vetor[i].nome);
+        printf("ME INFORME A IDADE: ");
+        scanf("%d", &vetor[i].idade);
+        printf("ME INFORME O SALARIO: ");
+        scanf("%f", &vetor[i].salario);
+    }
+
+    return vetor;
+}
+
+int main() {
+    int quantidade;
+    vendedor *vetor;
+    
+    printf("ME INFORME A QUANTIDADE: ");
+    scanf("%d", &quantidade);
+
+    vetor = funcao(quantidade);
+    
+    for(int i = 0; i < quantidade; i++) {
+        printf("%s ", vetor[i].nome);
+        printf("%d ", vetor[i].idade);
+        printf("%.2f\n", vetor[i].salario);
+    }
+    return 0;
+}
