@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int **vet, i, j;
+    vet = calloc(10, sizeof(int *));
+    
+    for(i = 0; i < 10; i++) {
+        vet[i] = calloc(15, sizeof(int));
+    }
+
+    for(i = 0; i < 10; i++) {
+        for(j = 0; j < 15; j++) {
+            printf("%d ", vet[i][j]);
+        }
+        printf("\n");
+    }
+    vet = realloc(vet,5 * sizeof(int *));
+    
+    printf("\n\n");
+    
+    for(i = 0; i < 5; i++) {
+        for(j = 0; j < 15; j++) {
+            printf("%d ", vet[i][j]);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}
