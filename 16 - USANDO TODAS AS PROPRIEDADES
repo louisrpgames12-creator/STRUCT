@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    char nome[20];
+    int idade;
+    float salarioBase;
+    float totalVendido;
+}vendedor;
+
+int main() {
+    int opcao = 1000, qtd_vendedores, qtd_cheia = 0, i, qtd_cheia_anterior;
+    float comissao;
+    vendedor *vendedores;
+    vendedores = NULL;
+    while(opcao != 0) {
+    printf("*******************************************\n"
+"\tO que deseja fazer?\n"
+"\tCadastrar Vendedores (1)\n"
+"\tMostrar os dados de todos os Vendedores Cadastrados (2)\n"
+"\tcalcular comissões (3)\n"
+"\tSair do Programa (0)\n"
+"*******************************************\n");
+    scanf("%d", &opcao);
+    
+    if(opcao == 1) {
+        printf("ME INFORME QUANTOS VENDEDORES QUER CADASTRAR:");
+        scanf("%d", &qtd_vendedores);
+        qtd_cheia_anterior = qtd_cheia;
+        qtd_cheia += qtd_vendedores;
+        vendedores = realloc(vendedores, qtd_cheia * sizeof(vendedor));
+        for(i = qtd_cheia_anterior; i < qtd_cheia; i++) {
+            printf("ME INFORME O NOME DO VENDEDOR %d: ", i + 1);
+            scanf(" %19[^\n]", vendedores[i].nome);
+            printf("ME INFORME A IDADE DO VENDEDOR %d: ", i + 1);
+            scanf("%d", &vendedores[i].idade);
+            printf("ME INFORME O SALARIO DO VENDEDOR %d: ", i + 1);
+            scanf("%f", &vendedores[i].salarioBase);
+            printf("ME INFORME O TOTAL VENDIDO DO VENDEDOR %d: ", i + 1);
+            scanf("%f", &vendedores[i].totalVendido);
+        }
+    } else
+        if(opcao == 2) {
+            for(i = 0; i < qtd_cheia; i++) {
+                printf("***************************\n");
+                printf("\tVENDEDOR %d: %s\n", i + 1, vendedores[i].nome);
+                printf("\tIDADE %d: %d\n", i + 1, vendedores[i].idade);
+                printf("\tSALARIO %d: %.2f\n", i + 1, vendedores[i].salarioBase);
+                printf("\tVENDEDOR %d: %.2f\n", i + 1, vendedores[i].totalVendido);
+            }
+        } else
+            if(opcao == 3) {
+                for(i = 0; i < qtd_cheia; i++) {
+                    comissao = vendedores[i].totalVendido / 3.0/100;
+                    printf("***************************\n");
+                    printf("\tCOMISSÃO %d: %.2f\n", i + 1, comissao);
+                }
+            }
+        }
+
+    free(vendedores);
+    return 0;
+}
